@@ -1,0 +1,31 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "security:only-security-updates",
+    ":automergeMinor",
+    ":disableDependencyDashboard",
+    ":semanticCommits",
+    ":separateMultipleMajorReleases"
+  ],
+  "postUpdateOptions": ["gomodTidy", "gomodUpdateImportPaths"],
+  "rangeStrategy": "bump",
+  "minimumReleaseAge": "14 days",
+  "schedule": ["* 0-5 * * *"],
+  "timezone": "Europe/Moscow",
+  "labels": ["dependencies"],
+  "vulnerabilityAlerts": {
+    "addLabels": ["security"],
+    "semanticCommitType": "fix"
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "matchDepTypes": ["action"],
+      "enabled": true,
+      "automerge": true,
+      "separateMajorMinor": false,
+      "separateMultipleMajor": false
+    }
+  ]
+}
