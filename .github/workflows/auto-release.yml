@@ -32,10 +32,10 @@ jobs:
             else
               next_version=$(npx --yes semver "$tag" -i patch)
             fi
-            echo "next-version=$next_version" >> $GITHUB_OUTPUT
+            echo "next-version=$next_version" >>$GITHUB_OUTPUT
             next_tag="v${next_version}"
             echo "Next tag: $next_tag"
-            echo "next-tag=$next_tag" >> $GITHUB_OUTPUT
+            echo "next-tag=$next_tag" >>$GITHUB_OUTPUT
           else
             echo "No new significant Renovate commits"
           fi
@@ -44,10 +44,10 @@ jobs:
         if: steps.git.outputs.next-tag != '' && inputs.node-projects != ''
         run: |
           if [ -f .nvmrc ]; then
-            echo "node-version-file=.nvmrc" >> $GITHUB_OUTPUT
+            echo "node-version-file=.nvmrc" >>$GITHUB_OUTPUT
             echo "Use Node.js version from .nvmrc"
           elif [ -f .tool-versions ]; then
-            echo "node-version-file=.tool-versions" >> $GITHUB_OUTPUT
+            echo "node-version-file=.tool-versions" >>$GITHUB_OUTPUT
             echo "Use Node.js version from .tool-versions"
           else
             echo "No Node.js version file found"
